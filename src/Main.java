@@ -8,31 +8,40 @@ import org.openqa.selenium.support.ui.Select;
 
 public class Main {
 
+    public static final String aur_reg_url = "https://aur.archlinux.org/register/";
+    public static final String main_url = "https://www.archlinux.org";
+
     public static void main(String[] args) {
         // Open Firefox.
         System.setProperty("webdriver.firefox.bin", "D:\\program\\Mozilla Firefox\\firefox.exe");
         System.setProperty("webdriver.gecko.driver", "D:\\program\\webdrivers\\geckodriver-v0.24.0-win64\\geckodriver.exe");
         WebDriver firefox_driver = new FirefoxDriver();
 
-        String aur_reg_url = "https://aur.archlinux.org/register/";
-        String main_url = "https://www.archlinux.org";
-
-        firefox_driver.get(aur_reg_url);
-        printCurrentWeb(firefox_driver);
-
-        testTextarea(firefox_driver);
-        testCheckbox(firefox_driver);
-        testButton(firefox_driver);
-        testSelect(firefox_driver);
-
-        firefox_driver.get(main_url);
-        printCurrentWeb(firefox_driver);
-
-        testLayerLocation(firefox_driver);
-        testForm(firefox_driver);
+        testBasicFunction(firefox_driver);
+        // testLink(firefox_driver);
 
         firefox_driver.close();
     }
+
+    private static void testBasicFunction(WebDriver driver) {
+        driver.get(aur_reg_url);
+        printCurrentWeb(driver);
+
+        testTextarea(driver);
+        testCheckbox(driver);
+        testButton(driver);
+        testSelect(driver);
+
+        driver.get(main_url);
+        printCurrentWeb(driver);
+
+        testLayerLocation(driver);
+        testForm(driver);
+    }
+
+    // private static void testLink(WebDriver driver) {
+
+    // }
 
     private static void printCurrentWeb(WebDriver driver) {
         String title = driver.getTitle();
@@ -123,6 +132,7 @@ public class Main {
         logTestSuccess(name);
     }
 
+    /* 6. Test of selection. */
     private static void testSelect(WebDriver driver) {
         String name = "select";
         logTestStart(name);
